@@ -21,6 +21,7 @@ with mp_face_mesh.FaceMesh(min_detection_confidence=.6) as face_mesh:
 
         if results.multi_face_landmarks:
             for face_landmarks in results.multi_face_landmarks:
+                print(len(face_landmarks.landmark))
                 mp_drawing.draw_landmarks(image=frame, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_TESSELATION, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles
           .get_default_face_mesh_tesselation_style())
 
