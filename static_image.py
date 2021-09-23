@@ -14,10 +14,11 @@ with mp_face_mesh.FaceMesh(min_detection_confidence=.6) as face_mesh:
     results = face_mesh.process(image)
 
     image.flags.writeable = True
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
 
     if results.multi_face_landmarks:
         for face_landmarks in results.multi_face_landmarks:
-            mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_TESSELATION, landmark_drawing_spec=None)
+            mp_drawing.draw_landmarks(image=image, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_CONTOURS, landmark_drawing_spec=None)
 
 
 cv2.imshow('Static Image', image)
