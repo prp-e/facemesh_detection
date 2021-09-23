@@ -26,9 +26,8 @@ with mp_face_mesh.FaceMesh(min_detection_confidence=.6) as face_mesh:
                     cx, cy = int(landmark.x * w), int(landmark.y * h)
                     if id == 1:
                         cv2.circle(frame, (cx, cy), 5, (0, 0, 255), -1)
-                    if id == 2:
-                        cv2.circle(frame, (cx, cy), 5, (0, 0, 255), -1)
-                    if id == 4:
+                    
+                    if id == 5:
                         cv2.circle(frame, (cx, cy), 5, (0, 0, 255), -1)
                     if id == 129:
                         cv2.circle(frame, (cx, cy), 5, (0, 0, 255), -1)
