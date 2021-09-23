@@ -16,7 +16,8 @@ with mp_face_mesh.FaceMesh(min_detection_confidence=.6) as face_mesh:
         results = face_mesh.process(frame)
 
         if results.multi_face_landmarks:
-            print(results)
+            for face_landmarks in results.multi_face_landmarks:
+                mp_drawing.draw_landmarks(image=frame, landmark_list=face_landmarks, connections=face_mesh.FACEMESH_TESSELATION)
 
         frame.flags.writeable = True
         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
