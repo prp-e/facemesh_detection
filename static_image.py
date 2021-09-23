@@ -25,7 +25,15 @@ with mp_face_mesh.FaceMesh(min_detection_confidence=.6) as face_mesh:
             for id, landmark in enumerate(face_landmarks.landmark):
                 h, w, c = image.shape
                 cx, cy = int(landmark.x * w), int(landmark.y * h)
-                if id == 29:
+                if id == 1:
+                    cv2.circle(image, (cx, cy), 5, (0, 0, 255), -1)
+                if id == 2:
+                    cv2.circle(image, (cx, cy), 5, (0, 0, 255), -1)
+                if id == 4:
+                    cv2.circle(image, (cx, cy), 5, (0, 0, 255), -1)
+                if id == 129:
+                    cv2.circle(image, (cx, cy), 5, (0, 0, 255), -1)
+                if id == 358:
                     cv2.circle(image, (cx, cy), 5, (0, 0, 255), -1)
 
 
