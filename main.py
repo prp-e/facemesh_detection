@@ -21,9 +21,19 @@ with mp_face_mesh.FaceMesh(min_detection_confidence=.6) as face_mesh:
 
         if results.multi_face_landmarks:
             for face_landmarks in results.multi_face_landmarks:
-                print(len(face_landmarks.landmark))
-                mp_drawing.draw_landmarks(image=frame, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_TESSELATION, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles
-          .get_default_face_mesh_tesselation_style())
+                for id, landmark in enumerate(face_landmarks.landmark):
+                    h, w, c = frame.shape
+                    cx, cy = int(landmark.x * w), int(landmark.y * h)
+                    if id == 1:
+                        cv2.circle(image, (cx, cy), 5, (0, 0, 255), -1)
+                    if id == 2:
+                        cv2.circle(image, (cx, cy), 5, (0, 0, 255), -1)
+                    if id == 4:
+                        cv2.circle(image, (cx, cy), 5, (0, 0, 255), -1)
+                    if id == 129:
+                        cv2.circle(image, (cx, cy), 5, (0, 0, 255), -1)
+                    if id == 358:
+                        cv2.circle(image, (cx, cy), 5, (0, 0, 255), -1)
 
         
         
