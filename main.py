@@ -2,6 +2,7 @@ import cv2
 import mediapipe as mp
 
 mp_drawing = mp.solutions.drawing_utils
+mp_drawing_styles = mp.solutions.drawing_styles
 mp_face_mesh = mp.solutions.face_mesh
 
 camera = cv2.VideoCapture(1)
@@ -15,12 +16,15 @@ with mp_face_mesh.FaceMesh(min_detection_confidence=.6) as face_mesh:
 
         results = face_mesh.process(frame)
 
-        if results.multi_face_landmarks:
-            for face_landmarks in results.multi_face_landmarks:
-                mp_drawing.draw_landmarks(image=frame, landmark_list=face_landmarks, connections=face_mesh.FACEMESH_TESSELATION)
-
         frame.flags.writeable = True
         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+
+        if results.multi_face_landmarks:
+            for face_landmarks in results.multi_face_landmarks:
+                mp_drawing.draw_landmarks(image=frame, landmark_list=face_landmarks, connections=mp_face_mesh.FACEMESH_TESSELATION, landmark_drawing_spec=None, connection_drawing_spec=mp_drawing_styles
+          .get_default_face_mesh_tesselation_style())
+
+        
         
         cv2.imshow('Face Mesh Detection', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
