@@ -23,7 +23,8 @@ with mp_face_mesh.FaceMesh(min_detection_confidence=.6) as face_mesh:
             for id, landmark in enumerate(face_landmarks.landmark):
                 h, w, c = image.shape
                 cx, cy = int(landmark.x * w), int(landmark.y * h)
-                cv2.putText(image, str(id), (cx, cy), cv2.FONT_HERSHEY_SIMPLEX, .25, (0, 0, 255), 1)
+                if id == 29:
+                    cv2.circle(image, (cx, cy), 5, (0, 0, 255), -1)
 
 
 
